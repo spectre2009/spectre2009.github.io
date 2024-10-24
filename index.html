@@ -21,22 +21,33 @@
             position: relative;
         }
 
-        /* Background Stars */
-        body::before {
-            content: '';
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Starfield background */
+        .starfield {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://raw.githubusercontent.com/raichur/particle-stars/master/particle-stars.svg') repeat;
-            opacity: 0.5;
             z-index: -1;
         }
 
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         /* Main SPECTRÉ Header with smooth rainbow gradient */
@@ -46,7 +57,7 @@
             background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientLoop 8s ease infinite;
+            animation: gradientLoop 5s ease infinite;
         }
 
         @keyframes gradientLoop {
@@ -68,28 +79,22 @@
         section {
             padding: 50px 20px;
             max-width: 800px;
-            width: 80%;
+            margin: 40px auto;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            margin-bottom: 40px;
-            transition: transform 0.5s ease-in-out;
-            text-align: center;
-            min-height: 300px; /* Ensuring same size */
-        }
-
-        section:hover {
-            transform: scale(1.05);
+            min-height: 300px; /* Same height for all sections */
         }
 
         /* Smooth transition for all headings */
         h2 {
+            text-align: center;
             font-size: 2.5em;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, #ff0080, #ff8c00);
+            background: linear-gradient(45deg, yellow, orange, red);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientLoop 8s ease infinite;
+            animation: gradientLoop 5s ease infinite;
         }
 
         /* Links and social media hover effect */
@@ -116,14 +121,18 @@
             transform: scale(1.3);
             color: #00ffff;
         }
-
-        /* Footer alignment */
-        footer {
-            margin-top: 40px;
-        }
     </style>
 </head>
 <body>
+
+    <!-- Starfield background -->
+    <div class="starfield">
+        <div class="star" style="top: 10%; left: 20%;"></div>
+        <div class="star" style="top: 30%; left: 70%;"></div>
+        <div class="star" style="top: 50%; left: 40%;"></div>
+        <div class="star" style="top: 70%; left: 80%;"></div>
+        <div class="star" style="top: 90%; left: 60%;"></div>
+    </div>
 
     <!-- Header with animated gradient -->
     <header>
@@ -133,9 +142,10 @@
     <!-- Sections -->
     <section id="about">
         <h2>About Me</h2>
-        <p>Hello! i’m Arya Mallick also known as Spectré i'm a tech enthusiast, and coder, passionate about creating projects that make an impact. I love exploring new technologies and collaborating with others.</p>
- 
-        <section id="projects">
+        <p>I’m Arya Mallick, a 15+ year old tech enthusiast, traveler, and coder, passionate about creating projects that make an impact. I love exploring new technologies and collaborating with others.</p>
+    </section>
+
+    <section id="projects">
         <h2>Projects</h2>
         <p>Explore my latest projects below:</p>
         <a href="#" class="project-link">Project 1</a><br>
@@ -148,16 +158,10 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 SPECTRÉ. All Rights Reserved.</p>
         <div class="socials">
             <a href="https://github.com/spectre2009">GitHub</a>
         </div>
     </footer>
-     <!-- Smooth Scroll Indicator -->
-    <div class="scroll-indicator">
-        <p>Scroll Down</p>
-    </div>
 
 </body>
 </html>
-
