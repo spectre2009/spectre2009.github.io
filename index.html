@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPECTRÉ - Code Projects</title>
+    <title>Spectre - Code Projects</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset */
-        body, h1, h2, p, section {
+        /* Basic Reset */
+        body, h1, h2, h3, p, ul, li {
             margin: 0;
             padding: 0;
+            list-style: none;
             font-family: 'Roboto', sans-serif;
-            text-align: center;
-            overflow-x: hidden;
         }
 
         body {
@@ -21,158 +20,256 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Smooth Scroll */
+        html {
             scroll-behavior: smooth;
         }
 
-        /* Aurora Borealis effect for the first page */
-        .aurora {
+        /* Fireflies and Stars Animation - now covers entire page */
+        .firefly, .star {
             position: absolute;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            background: url('https://path-to-your-aurora-image.png') no-repeat center center;
-            background-size: cover;
-            animation: auroraMove 30s infinite linear;
-            opacity: 0.7;
-            z-index: -1;
+            border-radius: 50%;
+            background: rgba(0, 255, 255, 0.7);
+            animation: fly 2s infinite alternate ease-in-out;
+            opacity: 0.8;
         }
 
-        @keyframes auroraMove {
+        .star {
+            background: #fff;
+            animation: twinkle 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Cover the entire body with stars and constellations */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(5,5,28,1) 50%, rgba(2,2,16,1) 100%);
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* Header Animation */
+        @keyframes text-animate {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
         }
 
-        /* Stars animation */
-        .star {
-            position: absolute;
-            border-radius: 50%;
-            background: #fff;
-            animation: twinkle 5s infinite alternate ease-in-out;
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 1;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+        header h1 {
+            font-size: 4em;
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            margin: 0;
+            background-size: 200% auto;
+            animation: text-animate 3s infinite alternate ease-in-out;
+            transition: transform 0.3s ease-in-out;
         }
 
-        /* Create sections for each page (Home, About, Projects, Contact) */
-        section {
-            height: 100vh;
+        header h1:hover {
+            transform: scale(1.1);
+        }
+
+        nav {
             display: flex;
             justify-content: center;
-            align-items: center;
+            margin: 20px 0;
+        }
+
+        nav a {
+            color: #ff0080;
+            padding: 15px 25px;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin: 0 15px;
+            transition: all 0.5s ease-in-out;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: #ff8c00;
+            border-bottom: 2px solid #ff8c00;
+        }
+
+        /* Smooth Section Transitions */
+        section {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease-in-out;
             position: relative;
             z-index: 2;
+            animation: sectionAppear 1.5s ease-in-out;
         }
 
-        /* SPECTRÉ heading with smooth RGB gradient */
-        header h1 {
-            font-size: 5em;
-            background: linear-gradient(45deg, red, orange, yellow, green, blue, purple);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 400% 400%;
-            animation: gradientRGB 5s infinite alternate;
+        @keyframes sectionAppear {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
-        @keyframes gradientRGB {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        section:hover {
+            transform: scale(1.05);
         }
 
-        /* Smooth gradient for About, Projects, and Contact headings */
         h2 {
-            font-size: 3em;
-            background: linear-gradient(45deg, yellow, orange, red);
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientShift 3s infinite alternate;
+            animation: text-animate 3s infinite alternate ease-in-out;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        /* Project Animation */
+        .project {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(52, 73, 94, 0.8);
+            border-radius: 5px;
+            transition: all 0.5s ease-in-out;
         }
 
-        /* Fireflies Effect */
-        .firefly {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: radial-gradient(circle, #fff, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: fireflyMove 20s infinite ease-in-out;
+        .project:hover {
+            transform: translateY(-5px) scale(1.02);
         }
 
-        @keyframes fireflyMove {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(50vw, 50vh); }
-            100% { transform: translate(0, 0); }
+        a.project-link {
+            color: cyan;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
         }
 
-        /* Footer */
+        a.project-link:hover {
+            color: #00ffff;
+        }
+
         footer {
+            text-align: center;
             padding: 20px;
             background-color: rgba(0, 0, 0, 0.7);
+            margin-top: 40px;
         }
 
-        /* Stars Creation */
-        .star {
-            position: absolute;
-            border-radius: 50%;
-            background: #fff;
-            animation: twinkle 5s infinite alternate ease-in-out;
-            opacity: 0.8;
+        /* Social Media Links Animation */
+        .socials {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+        .socials a {
+            color: cyan;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: all 0.5s ease-in-out;
         }
 
-        /* Additional responsive adjustments */
-        @media screen and (max-width: 768px) {
-            header h1 {
-                font-size: 3em;
-            }
-
-            h2 {
-                font-size: 2em;
-            }
-
-            section {
-                padding: 30px 10px;
-            }
+        .socials a:hover {
+            transform: scale(1.3);
+            color: #00ffff;
         }
+
     </style>
 </head>
 <body>
 
-    <!-- Aurora Borealis effect -->
-    <div class="aurora"></div>
+    <!-- Fireflies, Stars, and Constellations Animation -->
+    <script>
+        const createElements = () => {
+            const elementCount = 300; // Increase for more stars and fireflies
+            const body = document.body;
 
-    <!-- SPECTRÉ Section -->
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement("div");
+                element.classList.add(i % 2 === 0 ? "firefly" : "star");
+                const size = Math.random() * 3 + 2;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.left = `${left}vw`;
+                element.style.top = `${top}vh`; // Spread them across the viewport
+                body.appendChild(element);
+            }
+        };
+
+        // Call the function to create the elements when the page loads
+        window.onload = createElements;
+    </script>
+
+    <!-- Header Section -->
     <header>
         <h1>SPECTRÉ</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
 
     <!-- About Section -->
     <section id="about">
         <h2>About</h2>
-        <p>Details about you go here. Use this space to introduce yourself.</p>
+        <p>This is the about section where you can provide details about yourself, your skills, or any other information you'd like to share with your visitors.</p>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
         <h2>Projects</h2>
-        <p>Highlight your projects and code here.</p>
+        <div class="project">
+            <h3>Project 1</h3>
+            <p>Details about your first project go here. Describe what the project does, what technologies you used, and any other relevant details.</p>
+            <a href="#" class="project-link">View Project</a>
+        </div>
+        <div class="project">
+            <h3>Project 2</h3>
+            <p>Details about your second project go here. Share the technologies used, any challenges faced, and solutions you implemented.</p>
+            <a href="#" class="project-link">View Project</a>
+        </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
         <h2>Contact</h2>
-        <p>Get in touch using the information below.</p>
+        <p>You can reach out to me through the following contact details or through social media.</p>
+        <div class="socials">
+            <a href="mailto:your.email@example.com">Email</a>
+            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -180,29 +277,5 @@
         <p>© 2024 SPECTRÉ. All Rights Reserved.</p>
     </footer>
 
-    <!-- Stars and Fireflies Script -->
-    <script>
-        // Add stars to the body
-        const starCount = 150;  // Adjust the number of stars
-        for (let i = 0; i < starCount; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.width = `${Math.random() * 3 + 1}px`;
-            star.style.height = star.style.width;
-            star.style.top = `${Math.random() * 100}vh`;
-            star.style.left = `${Math.random() * 100}vw`;
-            document.body.appendChild(star);
-        }
-
-        // Add fireflies
-        const fireflyCount = 30;  // Adjust fireflies
-        for (let i = 0; i < fireflyCount; i++) {
-            const firefly = document.createElement('div');
-            firefly.className = 'firefly';
-            firefly.style.top = `${Math.random() * 100}vh`;
-            firefly.style.left = `${Math.random() * 100}vw`;
-            document.body.appendChild(firefly);
-        }
-    </script>
 </body>
 </html>
