@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spectre - Code Projects</title>
     <meta name="description" content="Welcome to Spectre's personal website showcasing innovative coding projects and interactive features.">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">                                                                                     
     <style>
         /* Basic Reset */
         body, h1, h2, h3, p, ul, li {
@@ -13,7 +13,6 @@
             padding: 0;
             list-style: none;
             font-family: 'Roboto', sans-serif;
-            text-align: center; /* Centering all text */
         }
 
         body {
@@ -89,13 +88,13 @@
 
         header h1 {
             font-size: 4em;
-            background: linear-gradient(45deg, #ff0080, #ff8c00, #00ff80, #0080ff, #8000ff);
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             color: transparent;
             margin: 0;
-            background-size: 400% auto;
-            animation: text-animate 5s linear infinite; /* Adjust the duration for smoother effect */
+            background-size: 200% auto;
+            animation: text-animate 3s infinite alternate ease-in-out;
             transition: transform 0.3s ease-in-out;
         }
 
@@ -250,11 +249,11 @@
                 const size = Math.random() * 3 + 2;
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
-                element.style.width = `${size}px`;
-                element.style.height = `${size}px`;
-                element.style.left = `${left}vw`;
-                element.style.top = `${top}vh`; // Spread them across the entire height
-                element.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                element.style.width = ${size}px;
+                element.style.height = ${size}px;
+                element.style.left = ${left}vw;
+                element.style.top = ${top}vh; // Spread them across the entire height
+                element.style.animationDuration = ${Math.random() * 3 + 2}s;
                 body.appendChild(element);
             }
         };
@@ -278,71 +277,74 @@
         const showQuiz = () => {
             const quizContainer = document.getElementById('quiz');
             quizQuestions.forEach((q, index) => {
-                const questionElement = document.createElement('div');
-                questionElement.classList.add('quiz-question');
-                questionElement.innerText = q.question;
-                quizContainer.appendChild(questionElement);
+                const questionElem = document.createElement('div');
+                questionElem.classList
+                questionElem.className = 'quiz-question';
+                questionElem.innerHTML = <strong>${q.question}</strong>;
+                quizContainer.appendChild(questionElem);
 
-                q.answers.forEach((answer, answerIndex) => {
-                    const answerButton = document.createElement('button');
-                    answerButton.classList.add('quiz-answer');
-                    answerButton.innerText = answer;
-                    answerButton.onclick = () => {
-                        if (answerIndex === q.correct) {
-                            alert('Correct!');
-                        } else {
-                            alert('Wrong!');
-                        }
+                q.answers.forEach((answer, i) => {
+                    const answerBtn = document.createElement('button');
+                    answerBtn.className = 'quiz-answer';
+                    answerBtn.innerText = answer;
+                    answerBtn.onclick = () => {
+                        alert(i === q.correct ? "Correct!" : "Wrong answer, try again.");
                     };
-                    quizContainer.appendChild(answerButton);
+                    quizContainer.appendChild(answerBtn);
                 });
             });
         };
 
-        document.addEventListener('DOMContentLoaded', showQuiz);
+        window.onload = showQuiz; // Show quiz when the page loads
     </script>
 
     <header>
-        <h1>Spectre</h1>
+        <h1>SPECTRÉ</h1>
         <nav>
-            <a href="#projects">Projects</a>
             <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#quiz">Quiz</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Welcome to my personal space where I share my coding projects and learnings. My passion for coding drives me to create innovative solutions and share knowledge.</p>
+        <p>With a background in various programming languages and frameworks, I'm always eager to take on new challenges and expand my skill set.</p>
+    </section>
+
     <section id="projects">
         <h2>My Projects</h2>
         <div class="project">
-            <h3><a class="project-link" href="https://github.com/spectre2009/project1" target="_blank">Project 1</a></h3>
-            <p>Description of Project 1.</p>
+            <h3>Dynamic Calculator</h3>
+            <p>This is a simple yet effective calculator built using HTML, CSS, and JavaScript. It performs basic arithmetic operations seamlessly.</p>
+            <a class="project-link" href="https://spectre2009.github.io/calculator" target="_blank">View Project</a>
         </div>
         <div class="project">
-            <h3><a class="project-link" href="https://github.com/spectre2009/project2" target="_blank">Project 2</a></h3>
-            <p>Description of Project 2.</p>
+            <h3>Interactive Quiz</h3>
+            <p>Test your knowledge with my interactive quiz! Answer questions to see how much you know.</p>
+            <a class="project-link" href="#quiz">Try it out!</a>
         </div>
-        <!-- Add more projects as needed -->
     </section>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Information about myself.</p>
+    <section id="quiz" class="quiz-container">
+        <h2>Take the Quiz!</h2>
+        <!-- Quiz questions will be inserted here by JavaScript -->
     </section>
 
     <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:aryamallick07@gmail.com" style="color: cyan;">aryamallick07@gmail.com</a></p>
-    </section>
-
-    <div id="quiz" class="quiz-container"></div>
-
-    <footer>
-        <p>&copy; 2024 Spectre. All rights reserved.</p>
+        <h2>Contact Me</h2>
+        <p>If you want to get in touch, feel free to reach out via my social media or email.</p>
         <div class="socials">
             <a href="https://github.com/spectre2009" target="_blank">GitHub</a>
-            <a href="https://twitter.com/spectre2009" target="_blank">Twitter</a>
-            <a href="https://linkedin.com/in/spectre2009" target="_blank">LinkedIn</a>
+            <a href="https://twitter.com/" target="_blank">Twitter</a>
+            <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
         </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 SPECTRÉ. All Rights Reserved.</p> 
     </footer>
 </body>
 </html>
