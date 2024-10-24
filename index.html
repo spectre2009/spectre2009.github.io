@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spectre - Code Projects</title>
     <meta name="description" content="Welcome to Spectre's personal website showcasing innovative coding projects and interactive features.">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">                                                                                     add smooth star trail effect for mouse pointer when moving the mouse 
     <style>
         /* Basic Reset */
         body, h1, h2, h3, p, ul, li {
@@ -88,13 +88,13 @@
 
         header h1 {
             font-size: 4em;
-            background: linear-gradient(45deg, #ff0080, #ff8c00, #00ff80, #0080ff, #8000ff);
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             color: transparent;
             margin: 0;
-            background-size: 400% auto;
-            animation: text-animate 5s linear infinite; /* Adjust the duration for smoother effect */
+            background-size: 200% auto;
+            animation: text-animate 3s infinite alternate ease-in-out;
             transition: transform 0.3s ease-in-out;
         }
 
