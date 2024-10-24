@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spectre - Code Projects</title>
     <meta name="description" content="Welcome to Spectre's personal website showcasing innovative coding projects and interactive features.">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">                                                                                     
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
         /* Basic Reset */
         body, h1, h2, h3, p, ul, li {
             margin: 0;
@@ -277,8 +278,7 @@
             const quizContainer = document.getElementById('quiz');
             quizQuestions.forEach((q, index) => {
                 const questionElem = document.createElement('div');
-                questionElem.classList
-                questionElem.className = 'quiz-question';
+                questionElem.classList                 questionElem.className = 'quiz-question';
                 questionElem.innerHTML = <strong>${q.question}</strong>;
                 quizContainer.appendChild(questionElem);
 
@@ -343,7 +343,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 SPECTRÉ. All Rights Reserved.</p> 
+        <p>&copy; 2024 SPECTRÉ. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
