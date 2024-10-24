@@ -18,6 +18,7 @@
             background-color: #000;
             color: #fff;
             overflow-x: hidden;
+            overflow-y: hidden;
             position: relative;
             height: 100vh;
             animation: fadeIn 2s ease-in-out forwards;
@@ -33,7 +34,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Fireflies and Stars Animation */
+        /* Fireflies and Stars Animation - now covers entire page */
         .firefly, .star {
             position: absolute;
             border-radius: 50%;
@@ -49,7 +50,7 @@
 
         @keyframes fly {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
         }
 
         @keyframes twinkle {
@@ -57,7 +58,7 @@
             50% { opacity: 1; }
         }
 
-        /* Background Gradient with Stars and Constellations */
+        /* Cover the entire body with stars and constellations */
         body::before {
             content: "";
             position: fixed;
@@ -89,7 +90,9 @@
             background: linear-gradient(45deg, #ff0080, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            color: transparent;
             margin: 0;
+            background-size: 200% auto;
             animation: text-animate 3s infinite alternate ease-in-out;
             transition: transform 0.3s ease-in-out;
         }
@@ -207,7 +210,7 @@
     <!-- Fireflies, Stars, and Constellations Animation -->
     <script>
         const createElements = () => {
-            const elementCount = 150; // Number of fireflies and stars
+            const elementCount = 300; // Increase for more stars and fireflies
             const body = document.body;
 
             for (let i = 0; i < elementCount; i++) {
@@ -215,9 +218,11 @@
                 element.classList.add(i % 2 === 0 ? "firefly" : "star");
                 const size = Math.random() * 3 + 2;
                 const left = Math.random() * 100;
+                const top = Math.random() * 100;
                 element.style.width = `${size}px`;
                 element.style.height = `${size}px`;
                 element.style.left = `${left}vw`;
+                element.style.top = `${top}vh`; // Spread them across the entire height
                 element.style.animationDuration = `${Math.random() * 3 + 2}s`;
                 body.appendChild(element);
             }
@@ -257,24 +262,22 @@
     <!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
-        <p>Hello! I’m @spectre2009, a developer passionate about coding and creating innovative projects. I love to explore new technologies and share my knowledge with others. My goal is to build impactful projects that can help people and improve everyday life. Feel free to explore my work and reach out!</p>
+        <p>Hello! I’m Arya Mallick also known as @spectre2009, a developer passionate about coding and creating innovative projects. I love to explore new technologies and share my knowledge with others. My goal is to build impactful projects that can help people and improve everyday life. Feel free to explore my work and reach out!</p>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a class="project-link" href="mailto:aryamallick07@gmail.com">aryamallick07@gmail.com</a></p>
-        <p>GitHub: <a class="project-link" href="https://github.com/spectre2009</a></p>
+        <h2>Contact Me</h2>
+        <p>If you'd like to collaborate or have any questions, feel free to reach out!</p>
+        <div class="socials">
+            <a href="mailto:aryamallick07@gmail.com" target="_blank">Email</a>
+            <a href="https://github.com/spectre2009" target="_blank">GitHub</a>
+        </div>
     </section>
 
-    <!-- Social Media Links -->
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Spectre | All Rights Reserved</p>
-        <div class="socials">
-            <a href="https://github.com/spectre2009" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-            <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a>
-        </div>
+        <p>© 2024 Spectre. All Rights Reserved.</p>
     </footer>
 
 </body>
