@@ -21,6 +21,7 @@
             position: relative;
             min-height: 100vh;
             animation: fadeIn 2s ease-in-out forwards;
+            scroll-behavior: smooth;
         }
 
         @keyframes fadeIn {
@@ -28,22 +29,17 @@
             100% { opacity: 1; }
         }
 
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Stars and Shooting Stars Animation */
-        .star, .shooting-star {
+        /* Stars and Fireflies Animation */
+        .star, .firefly {
             position: absolute;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.7);
             animation: twinkle 5s infinite alternate ease-in-out;
         }
 
-        .shooting-star {
-            background: #fff;
-            animation: shoot 2s infinite linear;
+        .firefly {
+            background: rgba(0, 255, 255, 0.7);
+            animation: fly 10s infinite alternate ease-in-out;
         }
 
         @keyframes twinkle {
@@ -51,12 +47,12 @@
             50% { opacity: 1; }
         }
 
-        @keyframes shoot {
-            0% { transform: translateY(0) translateX(0); }
-            100% { transform: translateY(-100vh) translateX(100vw); }
+        @keyframes fly {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100vh); }
         }
 
-        /* Add Background Effect */
+        /* Background and Star Effect */
         body::before {
             content: "";
             position: fixed;
@@ -64,12 +60,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(5,5,28,1) 50%, rgba(2,2,16,1) 100%);
+            background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(5, 5, 28, 1) 50%, rgba(2, 2, 16, 1) 100%);
             z-index: -1;
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
-        /* Header Animation */
+        /* Rainbow Gradient Effect for Header */
         @keyframes text-animate {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
@@ -89,37 +85,17 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
-            background-size: 200% auto;
-            animation: text-animate 5s linear infinite;
+            background-size: 300% auto;
+            animation: text-animate 3s linear infinite;
+            transform: scale(1);
+            transition: transform 0.3s ease-in-out;
         }
 
         header h1:hover {
             transform: scale(1.1);
-            transition: transform 0.3s ease-in-out;
         }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        nav a {
-            color: cyan;
-            padding: 15px 25px;
-            text-decoration: none;
-            text-transform: uppercase;
-            margin: 0 15px;
-            transition: all 0.5s ease-in-out;
-            border-bottom: 2px solid transparent;
-        }
-
-        nav a:hover {
-            color: #ff8c00;
-            border-bottom: 2px solid #ff8c00;
-        }
-
-        /* Section Styling */
+        /* Smooth Section Transitions */
         section {
             padding: 100px 20px;
             max-width: 800px;
@@ -142,14 +118,15 @@
             transform: scale(1.05);
         }
 
+        /* Enhanced Gradient for Section Headings */
         h2 {
             text-align: center;
             font-size: 3em;
-            background: linear-gradient(90deg, rgba(255, 0, 150, 1) 0%, rgba(0, 212, 255, 1) 100%);
+            background: linear-gradient(90deg, rgba(255, 255, 0, 1) 0%, rgba(255, 165, 0, 1) 50%, rgba(255, 69, 0, 1) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            animation: text-animate 5s linear infinite;
+            background-size: 200% auto;
+            animation: text-animate 3s linear infinite;
         }
 
         p {
@@ -159,6 +136,7 @@
             padding: 0 10px;
         }
 
+        /* Enhanced Footer Styling */
         footer {
             text-align: center;
             padding: 20px;
@@ -185,6 +163,32 @@
             color: #00ffff;
         }
 
+        /* Smooth Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s infinite alternate;
+        }
+
+        .scroll-indicator p {
+            color: #fff;
+            font-size: 1em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
     </style>
 </head>
 <body>
@@ -198,15 +202,15 @@
         </nav>
     </header>
 
-    <!-- Fireflies, Stars, and Constellations Animation -->
+    <!-- Fireflies and Stars Animation -->
     <script>
         const createElements = () => {
-            const elementCount = 500; // Increase for more stars and fireflies
+            const elementCount = 600; // Increase for more stars and fireflies
             const body = document.body;
 
             for (let i = 0; i < elementCount; i++) {
                 const element = document.createElement("div");
-                element.classList.add(i % 2 === 0 ? "star" : "shooting-star");
+                element.classList.add(i % 2 === 0 ? "star" : "firefly");
                 const size = Math.random() * 3 + 2;
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
@@ -242,5 +246,11 @@
             <a href="https://github.com/spectre2009">GitHub</a>
         </div>
     </footer>
+
+    <!-- Smooth Scroll Indicator -->
+    <div class="scroll-indicator">
+        <p>Scroll Down</p>
+    </div>
+
 </body>
 </html>
