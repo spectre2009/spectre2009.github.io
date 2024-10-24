@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPECTRÉ - Code Projects</title>
+    <title>Spectre - Code Projects</title>
+    <meta name="description" content="Welcome to Spectre's personal website showcasing innovative coding projects and interactive features.">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Basic Reset */
@@ -18,7 +19,15 @@
             background-color: #000;
             color: #fff;
             overflow-x: hidden;
+            overflow-y: auto;
             position: relative;
+            height: 100vh;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         /* Smooth Scroll */
@@ -26,7 +35,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Fireflies and Stars Animation */
+        /* Fireflies and Stars Animation - now covers entire page */
         .firefly, .star {
             position: absolute;
             border-radius: 50%;
@@ -50,7 +59,7 @@
             50% { opacity: 1; }
         }
 
-        /* Body background */
+        /* Cover the entire body with stars and constellations */
         body::before {
             content: "";
             position: fixed;
@@ -64,27 +73,33 @@
         }
 
         /* Header Animation */
+        @keyframes text-animate {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
         header {
             text-align: center;
             padding: 40px 0;
             background-color: rgba(0, 0, 0, 0.7);
             position: relative;
+            z-index: 1;
         }
 
         header h1 {
             font-size: 4em;
-            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-            background-size: 400% 400%;
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientLoop 5s ease infinite;
+            color: transparent;
             margin: 0;
+            background-size: 200% auto;
+            animation: text-animate 3s infinite alternate ease-in-out;
+            transition: transform 0.3s ease-in-out;
         }
 
-        @keyframes gradientLoop {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        header h1:hover {
+            transform: scale(1.1);
         }
 
         nav {
@@ -108,9 +123,8 @@
             border-bottom: 2px solid #ff8c00;
         }
 
-        /* Sections styling */
+        /* Smooth Section Transitions */
         section {
-            text-align: center;
             padding: 50px 20px;
             max-width: 800px;
             margin: 40px auto;
@@ -119,6 +133,13 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             transition: transform 0.5s ease-in-out;
             position: relative;
+            z-index: 2;
+            animation: sectionAppear 1.5s ease-in-out;
+        }
+
+        @keyframes sectionAppear {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         section:hover {
@@ -126,15 +147,16 @@
         }
 
         h2 {
+            text-align: center;
             font-size: 2.5em;
             margin-bottom: 20px;
             background: linear-gradient(45deg, #ff0080, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientLoop 3s infinite alternate ease-in-out;
+            animation: text-animate 3s infinite alternate ease-in-out;
         }
 
-        /* Project styling */
+        /* Project Animation */
         .project {
             margin-bottom: 20px;
             padding: 20px;
@@ -164,6 +186,7 @@
             margin-top: 40px;
         }
 
+        /* Social Media Links Animation */
         .socials {
             display: flex;
             justify-content: center;
@@ -180,6 +203,35 @@
         .socials a:hover {
             transform: scale(1.3);
             color: #00ffff;
+        }
+
+        /* Quiz Styling */
+        .quiz-container {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .quiz-question {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .quiz-answer {
+            margin: 5px 0;
+            cursor: pointer;
+            background: rgba(0, 255, 255, 0.3);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .quiz-answer:hover {
+            background: rgba(0, 255, 255, 0.5);
         }
     </style>
 </head>
@@ -200,63 +252,99 @@
                 element.style.width = `${size}px`;
                 element.style.height = `${size}px`;
                 element.style.left = `${left}vw`;
-                element.style.top = `${top}vh`;
+                element.style.top = `${top}vh`; // Spread them across the entire height
                 element.style.animationDuration = `${Math.random() * 3 + 2}s`;
                 body.appendChild(element);
             }
         };
 
         createElements();
+
+        // Quiz Functionality
+        const quizQuestions = [
+            {
+                question: "What is 5 + 3?",
+                answers: [ "5", "8", "10" ],
+                correct: 1
+            },
+            {
+                question: "What is 10 - 4?",
+                answers: [ "6", "4", "8" ],
+                correct: 0
+            }
+        ];
+
+        const showQuiz = () => {
+            const quizContainer = document.getElementById('quiz');
+            quizQuestions.forEach((q, index) => {
+                const questionElem = document.createElement('div');
+                questionElem.classList
+                questionElem.className = 'quiz-question';
+                questionElem.innerHTML = `<strong>${q.question}</strong>`;
+                quizContainer.appendChild(questionElem);
+
+                q.answers.forEach((answer, i) => {
+                    const answerBtn = document.createElement('button');
+                    answerBtn.className = 'quiz-answer';
+                    answerBtn.innerText = answer;
+                    answerBtn.onclick = () => {
+                        alert(i === q.correct ? "Correct!" : "Wrong answer, try again.");
+                    };
+                    quizContainer.appendChild(answerBtn);
+                });
+            });
+        };
+
+        window.onload = showQuiz; // Show quiz when the page loads
     </script>
 
-    <!-- Header -->
     <header>
         <h1>SPECTRÉ</h1>
-        <p>Welcome to my ultra-smooth personal website</p>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#quiz">Quiz</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>My Projects</h2>
-
-        <div class="project">
-            <h3><a class="project-link" href="https://github.com/spectre2009/project1" target="_blank">Project Name 1</a></h3>
-            <p>Description: This project is about ...</p>
-        </div>
-
-        <div class="project">
-            <h3><a class="project-link" href="https://github.com/spectre2009/project2" target="_blank">Project Name 2</a></h3>
-            <p>Description: This project is about ...</p>
-        </div>
-    </section>
-
-    <!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
-        <p>Hello! I’m Arya Mallick, a developer passionate about coding and creating innovative projects. I love to explore new technologies and share my knowledge with others. My goal is to build impactful projects that can help people and improve everyday life. Feel free to explore my work and reach out!</p>
+        <p>Welcome to my personal space where I share my coding projects and learnings. My passion for coding drives me to create innovative solutions and share knowledge.</p>
+        <p>With a background in various programming languages and frameworks, I'm always eager to take on new challenges and expand my skill set.</p>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>If you'd like to collaborate or have any questions, feel free to reach out!</p>
-        <div class="socials">
-            <a href="mailto:aryamallick07@gmail.com" target="_blank">Email</a>
-            <a href="https://github.com/spectre2009" target="_blank">GitHub</a>
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project">
+            <h3>Dynamic Calculator</h3>
+            <p>This is a simple yet effective calculator built using HTML, CSS, and JavaScript. It performs basic arithmetic operations seamlessly.</p>
+            <a class="project-link" href="https://spectre2009.github.io/calculator" target="_blank">View Project</a>
+        </div>
+        <div class="project">
+            <h3>Interactive Quiz</h3>
+            <p>Test your knowledge with my interactive quiz! Answer questions to see how much you know.</p>
+            <a class="project-link" href="#quiz">Try it out!</a>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 Spectre. All Rights Reserved.</p>
-    </footer>
+    <section id="quiz" class="quiz-container">
+        <h2>Take the Quiz!</h2>
+        <!-- Quiz questions will be inserted here by JavaScript -->
+    </section>
 
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>If you want to get in touch, feel free to reach out via my social media or email.</p>
+        <div class="socials">
+            <a href="https://github.com/spectre2009" target="_blank">GitHub</a>
+            <a href="https://twitter.com/" target="_blank">Twitter</a>
+            <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Arya Mallick. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
