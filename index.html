@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spectre - Code Projects</title>
     <meta name="description" content="Welcome to Spectre's personal website showcasing innovative coding projects and interactive features.">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">                                                                                     
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Basic Reset */
         body, h1, h2, h3, p, ul, li {
@@ -249,11 +249,11 @@
                 const size = Math.random() * 3 + 2;
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
-                element.style.width = ${size}px;
-                element.style.height = ${size}px;
-                element.style.left = ${left}vw;
-                element.style.top = ${top}vh; // Spread them across the entire height
-                element.style.animationDuration = ${Math.random() * 3 + 2}s;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.left = `${left}vw`;
+                element.style.top = `${top}vh`; // Spread them across the entire height
+                element.style.animationDuration = `${Math.random() * 3 + 2}s`;
                 body.appendChild(element);
             }
         };
@@ -279,8 +279,9 @@
             quizQuestions.forEach((q, index) => {
                 const questionElem = document.createElement('div');
                 questionElem.classList
-                questionElem.className = 'quiz-question';
-                questionElem.innerHTML = <strong>${q.question}</strong>;
+
+                                questionElem.className = 'quiz-question';
+                questionElem.innerHTML = `<strong>${q.question}</strong>`;
                 quizContainer.appendChild(questionElem);
 
                 q.answers.forEach((answer, i) => {
@@ -344,9 +345,11 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 SPECTRÉ. All Rights Reserved.</p> 
+        <p>&copy; 2024 Arya Mallick. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
+
+
 
 
