@@ -59,6 +59,22 @@
             50% { opacity: 1; }
         }
 
+        /* Star Trail Effect */
+        .trail {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: fadeOut 1s ease-in-out;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
         /* Cover the entire body with stars and constellations */
         body::before {
             content: "";
@@ -252,7 +268,7 @@
                 element.style.width = `${size}px`;
                 element.style.height = `${size}px`;
                 element.style.left = `${left}vw`;
-                element.style.top = `${top}vh`; // Spread them across the entire height
+                element.style.top = `${top}vh`;
                 element.style.animationDuration = `${Math.random() * 3 + 2}s`;
                 body.appendChild(element);
             }
@@ -260,156 +276,54 @@
 
         createElements();
 
-        // Quiz Functionality
-        const quizQuestions = [
-            {
-                question: "What is 5 + 3?",
-                answers: [ "5", "8", "10" ],
-                correct: 1
-            },
-            {
-                question: "What is 10 - 4?",
-                answers: [ "6", "4", "8" ],
-                correct: 0
-            }
-        ];
+        // Star Trail Effect
+        const starTrail = (e) => {
+            const trail = document.createElement('div');
+            trail.classList.add('trail');
+            trail.style.left = `${e.clientX}px`;
+            trail.style.top = `${e.clientY}px`;
+            document.body.appendChild(trail);
 
-        const showQuiz = () => {
-            const quizContainer = document.getElementById('quiz');
-            quizQuestions.forEach((q, index) => {
-                const questionElem = document.createElement('div');
-                questionElem.classList
-                questionElem.className = 'quiz-question';
-                questionElem.innerHTML = `<strong>${q.question}</strong>`;
-                quizContainer.appendChild(questionElem);
-
-                q.answers.forEach((answer, i) => {
-                    const answerBtn = document.createElement('button');
-                    answerBtn.className = 'quiz-answer';
-                    answerBtn.innerText = answer;
-                    answerBtn.onclick = () => {
-                        alert(i === q.correct ? "Correct!" : "Wrong answer, try again.");
-                    };
-                    quizContainer.appendChild(answerBtn);
-                });
-            });
+            // Remove the trail after 1 second to prevent clutter
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
         };
 
-        window.onload = showQuiz; // Show quiz when the page loads
+        // Add event listener for mouse movement
+        document.addEventListener('mousemove', starTrail);
     </script>
 
+    <!-- Header Section -->
     <header>
         <h1>SPECTRÉ</h1>
         <nav>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
-            <a href="#quiz">Quiz</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
+    <!-- Section Content -->
     <section id="about">
-        <h2>About Me</h2>
-        <p>Welcome to my personal space where I share my coding projects and learnings. My passion for coding drives me to create innovative solutions and share knowledge.</p>
-        <p>With a background in various programming languages and frameworks, I'm always eager to take on new challenges and expand my skill set.</p>
+        <h2>About</h2>
+        <p>This website showcases my coding projects and interactive features. Explore my work below.</p>
     </section>
 
     <section id="projects">
-        <h2>My Projects</h2>
+        <h2>Projects</h2>
         <div class="project">
-            <h3>Dynamic Calculator</h3>
-            <p>This is a simple yet effective calculator built using HTML, CSS, and JavaScript. It performs basic arithmetic operations seamlessly.</p>
-            <a class="project-link" href="https://spectre2009.github.io/calculator" target="_blank">View Project</a>
-        </div>
-        <div class="project">
-            <h3>Interactive Quiz</h3>
-            <p>Test your knowledge with my interactive quiz! Answer questions to see how much you know.</p>
-            <a class="project-link" href="#quiz">Try it out!</a>
+            <h3>Interactive Calculator</h3>
+            <a href="https://github.com/spectre2009/calculator" class="project-link">View on GitHub</a>
         </div>
     </section>
-
-    <section id="quiz" class="quiz-container">
-        <h2>Take the Quiz!</h2>
-        <!-- Quiz questions will be inserted here by JavaScript -->
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>If you want to get in touch, feel free to reach out via my social media or email.</p>
-        <div class="socials">
-            <a href="https://github.com/spectre2009" target="_blank">GitHub</a>
-            <a href="https://twitter.com/" target="_blank">Twitter</a>
-            <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
-        </div>
-    </section>
-
-    <script>
-    const createElements = () => {
-        const elementCount = 300; // Increase for more stars and fireflies
-        const body = document.body;
-
-        for (let i = 0; i < elementCount; i++) {
-            const element = document.createElement("div");
-            element.classList.add(i % 2 === 0 ? "firefly" : "star");
-            const size = Math.random() * 3 + 2;
-            const left = Math.random() * 100;
-            const top = Math.random() * 100;
-            element.style.width = `${size}px`;
-            element.style.height = `${size}px`;
-            element.style.left = `${left}vw`;
-            element.style.top = `${top}vh`;
-            element.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            body.appendChild(element);
-        }
-    };
-
-    createElements();
-
-    // Mouse Pointer Star Trail Effect
-    const starTrailContainer = document.createElement('div');
-    starTrailContainer.classList.add('star-trail-container');
-    document.body.appendChild(starTrailContainer);
-
-    document.addEventListener('mousemove', (e) => {
-        const star = document.createElement('div');
-        star.classList.add('star-trail');
-        star.style.left = `${e.pageX}px`;
-        star.style.top = `${e.pageY}px`;
-        starTrailContainer.appendChild(star);
-
-        setTimeout(() => {
-            star.remove();
-        }, 1000);
-    });
-
-    // CSS for star trail effect
-    const style = document.createElement('style');
-    style.textContent = `
-        .star-trail-container {
-            position: absolute;
-            pointer-events: none;
-            z-index: 10;
-        }
-        .star-trail {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 0, 0.7);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: trail 1s forwards;
-        }
-        @keyframes trail {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0); opacity: 0; }
-        }
-    `;
-    document.head.appendChild(style);
-</script>
-
 
     <footer>
-        <p>&copy; 2024 Arya Mallick. All Rights Reserved.</p>
+        <p>Connect with me on:</p>
+        <div class="socials">
+            <a href="https://github.com/spectre2009">GitHub</a>
+            <a href="mailto:aryamallick07@gmail.com">Email</a>
+        </div>
     </footer>
 </body>
 </html>
