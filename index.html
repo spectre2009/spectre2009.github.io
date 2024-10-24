@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spectre - Code Projects</title>
+    <title>SPECTRÉ - Code Projects</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Basic Reset */
-        body, h1, h2, h3, p, ul, li {
+        body, h1, h2, p, ul, li {
             margin: 0;
             padding: 0;
             list-style: none;
@@ -20,36 +20,19 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
-            animation: fadeIn 2s ease-in-out forwards;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* Smooth Scroll */
+        /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Fireflies and Stars Animation - now covers entire page */
-        .firefly, .star {
+        /* Glowing Stars */
+        .star {
             position: absolute;
             border-radius: 50%;
-            background: rgba(0, 255, 255, 0.7);
-            animation: fly 2s infinite alternate ease-in-out;
-            opacity: 0.8;
-        }
-
-        .star {
-            background: #fff;
+            background: rgba(255, 255, 255, 0.7);
             animation: twinkle 3s infinite alternate ease-in-out;
-        }
-
-        @keyframes fly {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100vh); }
         }
 
         @keyframes twinkle {
@@ -57,7 +40,21 @@
             50% { opacity: 1; }
         }
 
-        /* Cover the entire body with stars and constellations */
+        /* Shooting Stars */
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.7);
+            animation: shoot 3s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(-200px, -300px); opacity: 0; }
+        }
+
+        /* Aurora Borealis Effect */
         body::before {
             content: "";
             position: fixed;
@@ -67,21 +64,13 @@
             height: 100%;
             background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(5,5,28,1) 50%, rgba(2,2,16,1) 100%);
             z-index: -1;
-            opacity: 0.7;
         }
 
         /* Header Animation */
-        @keyframes text-animate {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
         header {
             text-align: center;
             padding: 40px 0;
             background-color: rgba(0, 0, 0, 0.7);
-            position: relative;
-            z-index: 1;
         }
 
         header h1 {
@@ -89,72 +78,36 @@
             background: linear-gradient(45deg, #ff0080, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            color: transparent;
-            margin: 0;
             background-size: 200% auto;
-            animation: text-animate 3s infinite alternate ease-in-out;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        header h1:hover {
-            transform: scale(1.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        nav a {
-            color: #ff0080;
-            padding: 15px 25px;
-            text-decoration: none;
+            animation: rainbow-text 3s infinite alternate ease-in-out;
             text-transform: uppercase;
-            margin: 0 15px;
-            transition: all 0.5s ease-in-out;
-            border-bottom: 2px solid transparent;
         }
 
-        nav a:hover {
-            color: #ff8c00;
-            border-bottom: 2px solid #ff8c00;
+        @keyframes rainbow-text {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
 
-        /* Smooth Section Transitions */
+        /* Section Styling */
         section {
             padding: 50px 20px;
             max-width: 800px;
             margin: 40px auto;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             transition: transform 0.5s ease-in-out;
-            position: relative;
-            z-index: 2;
-            animation: sectionAppear 1.5s ease-in-out;
-        }
-
-        @keyframes sectionAppear {
-            0% { transform: translateY(50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        section:hover {
-            transform: scale(1.05);
+            text-align: center;
         }
 
         h2 {
-            text-align: center;
             font-size: 2.5em;
-            margin-bottom: 20px;
             background: linear-gradient(45deg, #ff0080, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: text-animate 3s infinite alternate ease-in-out;
+            animation: rainbow-text 3s infinite alternate ease-in-out;
         }
 
-        /* Project Animation */
+        /* Project Styling */
         .project {
             margin-bottom: 20px;
             padding: 20px;
@@ -164,7 +117,7 @@
         }
 
         .project:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: scale(1.05);
         }
 
         a.project-link {
@@ -175,13 +128,6 @@
 
         a.project-link:hover {
             color: #00ffff;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            margin-top: 40px;
         }
 
         /* Social Media Links Animation */
@@ -202,79 +148,80 @@
             transform: scale(1.3);
             color: #00ffff;
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Fireflies, Stars, and Constellations Animation -->
+    <!-- Fireflies, Stars, and Shooting Stars Animation -->
     <script>
-        const createElements = () => {
-            const elementCount = 300; // Increase for more stars and fireflies
-            const body = document.body;
+        const createStars = () => {
+            const count = 100;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement("div");
+                star.classList.add("star");
+                document.body.appendChild(star);
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = `${Math.random() * 3}px`;
+            }
 
-            for (let i = 0; i < elementCount; i++) {
-                const element = document.createElement("div");
-                element.classList.add(i % 2 === 0 ? "firefly" : "star");
-                const size = Math.random() * 3 + 2;
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                element.style.width = `${size}px`;
-                element.style.height = `${size}px`;
-                element.style.left = `${left}vw`;
-                element.style.top = `${top}vh`; // Spread them across the viewport
-                body.appendChild(element);
+            for (let i = 0; i < 5; i++) {
+                const shootingStar = document.createElement("div");
+                shootingStar.classList.add("shooting-star");
+                document.body.appendChild(shootingStar);
+                shootingStar.style.left = `${Math.random() * 100}vw`;
+                shootingStar.style.top = `${Math.random() * 100}vh`;
             }
         };
 
-        // Call the function to create the elements when the page loads
-        window.onload = createElements;
+        createStars();
     </script>
 
     <!-- Header Section -->
     <header>
         <h1>SPECTRÉ</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
     </header>
 
     <!-- About Section -->
     <section id="about">
         <h2>About</h2>
-        <p>This is the about section where you can provide details about yourself, your skills, or any other information you'd like to share with your visitors.</p>
+        <p>
+            Hi! I'm Arya Mallick, a passionate coder and tech enthusiast with a love for creating innovative projects. I enjoy exploring various programming languages, designing websites, and contributing to open-source platforms. I constantly seek to enhance my skills and experiment with new technologies.
+        </p>
+        <p>
+            Aside from coding, I love traveling and discovering new places. I'm also deeply involved in the world of mutual funds and financial investments, always on the lookout for opportunities to grow and learn. My other interests include building Telegram bots and leading the group ALPHA Dominion.
+        </p>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
         <h2>Projects</h2>
         <div class="project">
-            <h3>Project 1</h3>
-            <p>Details about your first project go here. Describe what the project does, what technologies you used, and any other relevant details.</p>
-            <a href="#" class="project-link">View Project</a>
+            <a href="#" class="project-link">Project 1</a>
         </div>
         <div class="project">
-            <h3>Project 2</h3>
-            <p>Details about your second project go here. Share the technologies used, any challenges faced, and solutions you implemented.</p>
-            <a href="#" class="project-link">View Project</a>
+            <a href="#" class="project-link">Project 2</a>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
         <h2>Contact</h2>
-        <p>You can reach out to me through the following contact details or through social media.</p>
-        <div class="socials">
-            <a href="mailto:your.email@example.com">Email</a>
-            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-        </div>
+        <p>If you'd like to get in touch, feel free to reach me through the following:</p>
+        <ul>
+            <li>Email: <a href="mailto:aryamallick07@gmail.com" style="color: cyan;">aryamallick07@gmail.com</a></li>
+            <li>GitHub: <a href="https://github.com/spectre2009" target="_blank" style="color: cyan;">github.com/spectre2009</a></li>
+        </ul>
     </section>
 
     <!-- Footer -->
     <footer>
         <p>© 2024 SPECTRÉ. All Rights Reserved.</p>
+        <div class="socials">
+            <a href="mailto:aryamallick07@gmail.com">Email</a>
+            <a href="https://github.com/spectre2009">GitHub</a>
+        </div>
     </footer>
 
 </body>
