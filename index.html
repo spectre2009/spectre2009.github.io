@@ -19,136 +19,84 @@
             color: #fff;
             overflow-x: hidden;
             position: relative;
-            min-height: 100vh;
-            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        /* Smooth Scroll */
+        html {
             scroll-behavior: smooth;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* Stars and Fireflies Animation */
-        .star, .firefly {
+        /* Fireflies and Stars */
+        .firefly, .star {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.7);
-            animation: twinkle 5s infinite alternate ease-in-out;
-        }
-
-        .firefly {
             background: rgba(0, 255, 255, 0.7);
-            animation: fly 10s infinite alternate ease-in-out;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        @keyframes fly {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-100vh); }
-        }
-
-        /* Background and Star Effect */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(5, 5, 28, 1) 50%, rgba(2, 2, 16, 1) 100%);
-            z-index: -1;
+            animation: fly 2s infinite alternate ease-in-out;
             opacity: 0.8;
         }
 
-        /* Rainbow Gradient Effect for Header */
-        @keyframes text-animate {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        header {
-            text-align: center;
-            padding: 100px 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            position: relative;
-            z-index: 1;
-        }
-
+        /* Main SPECTRÉ Header with smooth rainbow gradient */
         header h1 {
-            font-size: 5em;
-            background: linear-gradient(90deg, rgba(255, 0, 150, 1) 0%, rgba(0, 212, 255, 1) 100%);
+            font-size: 4em;
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 0;
-            background-size: 300% auto;
-            animation: text-animate 3s linear infinite;
-            transform: scale(1);
-            transition: transform 0.3s ease-in-out;
+            animation: gradientLoop 8s ease infinite;
         }
 
-        header h1:hover {
-            transform: scale(1.1);
+        @keyframes gradientLoop {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Smooth Section Transitions */
+        /* Centering everything */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Section styling */
         section {
-            padding: 100px 20px;
+            padding: 50px 20px;
             max-width: 800px;
             margin: 40px auto;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             transition: transform 0.5s ease-in-out;
-            position: relative;
-            z-index: 2;
-            animation: sectionAppear 1.5s ease-in-out;
-        }
-
-        @keyframes sectionAppear {
-            0% { transform: translateY(50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
         }
 
         section:hover {
             transform: scale(1.05);
         }
 
-        /* Enhanced Gradient for Section Headings */
+        /* Smooth transition for all headings */
         h2 {
             text-align: center;
-            font-size: 3em;
-            background: linear-gradient(90deg, rgba(255, 255, 0, 1) 0%, rgba(255, 165, 0, 1) 50%, rgba(255, 69, 0, 1) 100%);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: text-animate 3s linear infinite;
+            animation: gradientLoop 8s ease infinite;
         }
 
-        p {
-            text-align: center;
-            font-size: 1.5em;
-            line-height: 1.6;
-            padding: 0 10px;
+        /* Links and social media hover effect */
+        nav a {
+            color: cyan;
+            padding: 15px 25px;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.5s ease-in-out;
         }
 
-        /* Enhanced Footer Styling */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            margin-top: 40px;
-        }
-
-        /* Social Media Links Animation */
-        .socials {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
+        nav a:hover {
+            color: #00ffff;
         }
 
         .socials a {
@@ -162,95 +110,38 @@
             transform: scale(1.3);
             color: #00ffff;
         }
-
-        /* Smooth Scroll Indicator */
-        .scroll-indicator {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
-            border-radius: 50px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 2s infinite alternate;
-        }
-
-        .scroll-indicator p {
-            color: #fff;
-            font-size: 1em;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: bounce 1.5s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
     </style>
 </head>
 <body>
 
+    <!-- Header with animated gradient -->
     <header>
         <h1>SPECTRÉ</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
     </header>
 
-    <!-- Fireflies and Stars Animation -->
-    <script>
-        const createElements = () => {
-            const elementCount = 600; // Increase for more stars and fireflies
-            const body = document.body;
-
-            for (let i = 0; i < elementCount; i++) {
-                const element = document.createElement("div");
-                element.classList.add(i % 2 === 0 ? "star" : "firefly");
-                const size = Math.random() * 3 + 2;
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                element.style.width = `${size}px`;
-                element.style.height = `${size}px`;
-                element.style.left = `${left}vw`;
-                element.style.top = `${top}vh`;
-                body.appendChild(element);
-            }
-        };
-
-        window.onload = createElements;
-    </script>
-
+    <!-- Sections -->
     <section id="about">
         <h2>About Me</h2>
-        <p>Hello, I’m Arya Mallick also known as Spectré, a tech enthusiast who enjoys working on exciting projects. I love traveling and exploring new places while coding on the go!</p>
+        <p>I’m a 15+ year old tech enthusiast, traveler, and coder, passionate about creating projects that make an impact. I love exploring new technologies and collaborating with others.</p>
     </section>
 
     <section id="projects">
         <h2>Projects</h2>
-        <p>Check out my projects on <a href="https://github.com/spectre2009" class="project-link">GitHub</a>.</p>
+        <p>Explore my latest projects below:</p>
+        <a href="#" class="project-link">Project 1</a><br>
+        <a href="#" class="project-link">Project 2</a>
     </section>
 
     <section id="contact">
         <h2>Contact</h2>
-        <p>Feel free to reach me via email at <a href="mailto:aryamallick07@gmail.com" class="project-link">aryamallick07@gmail.com</a> or connect with me on GitHub!</p>
+        <p>Feel free to reach out to me at <a href="mailto:aryamallick07@gmail.com" class="contact-link">aryamallick07@gmail.com</a></p>
     </section>
 
     <footer>
-        <p>&copy; 2024 SPECTRÉ. All Rights Reserved.</p>
         <div class="socials">
             <a href="https://github.com/spectre2009">GitHub</a>
         </div>
     </footer>
-
-    <!-- Smooth Scroll Indicator -->
-    <div class="scroll-indicator">
-        <p>Scroll Down</p>
-    </div>
 
 </body>
 </html>
