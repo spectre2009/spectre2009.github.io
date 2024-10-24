@@ -343,6 +343,71 @@
         </div>
     </section>
 
+    <script>
+    const createElements = () => {
+        const elementCount = 300; // Increase for more stars and fireflies
+        const body = document.body;
+
+        for (let i = 0; i < elementCount; i++) {
+            const element = document.createElement("div");
+            element.classList.add(i % 2 === 0 ? "firefly" : "star");
+            const size = Math.random() * 3 + 2;
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            element.style.left = `${left}vw`;
+            element.style.top = `${top}vh`;
+            element.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            body.appendChild(element);
+        }
+    };
+
+    createElements();
+
+    // Mouse Pointer Star Trail Effect
+    const starTrailContainer = document.createElement('div');
+    starTrailContainer.classList.add('star-trail-container');
+    document.body.appendChild(starTrailContainer);
+
+    document.addEventListener('mousemove', (e) => {
+        const star = document.createElement('div');
+        star.classList.add('star-trail');
+        star.style.left = `${e.pageX}px`;
+        star.style.top = `${e.pageY}px`;
+        starTrailContainer.appendChild(star);
+
+        setTimeout(() => {
+            star.remove();
+        }, 1000);
+    });
+
+    // CSS for star trail effect
+    const style = document.createElement('style');
+    style.textContent = `
+        .star-trail-container {
+            position: absolute;
+            pointer-events: none;
+            z-index: 10;
+        }
+        .star-trail {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 0, 0.7);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: trail 1s forwards;
+        }
+        @keyframes trail {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+
     <footer>
         <p>&copy; 2024 Arya Mallick. All Rights Reserved.</p>
     </footer>
