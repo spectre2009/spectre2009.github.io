@@ -249,11 +249,11 @@
                 const size = Math.random() * 3 + 2;
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
-                element.style.width = ${size}px;
-                element.style.height = ${size}px;
-                element.style.left = ${left}vw;
-                element.style.top = ${top}vh; // Spread them across the entire height
-                element.style.animationDuration = ${Math.random() * 3 + 2}s;
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.left = `${left}vw`;
+                element.style.top = `${top}vh`; // Spread them across the entire height
+                element.style.animationDuration = `${Math.random() * 3 + 2}s`;
                 body.appendChild(element);
             }
         };
@@ -278,8 +278,9 @@
             const quizContainer = document.getElementById('quiz');
             quizQuestions.forEach((q, index) => {
                 const questionElem = document.createElement('div');
-                questionElem.classList                 questionElem.className = 'quiz-question';
-                questionElem.innerHTML = <strong>${q.question}</strong>;
+                questionElem.classList
+                questionElem.className = 'quiz-question';
+                questionElem.innerHTML = `<strong>${q.question}</strong>`;
                 quizContainer.appendChild(questionElem);
 
                 q.answers.forEach((answer, i) => {
@@ -309,7 +310,7 @@
 
     <section id="about">
         <h2>About Me</h2>
-        <p>Welcome to my personal space where I share my coding projects and learnings. My passion for coding drives me to create innovative solutions and share knowledge.</p>
+        <p>Hello i'm Arya Mallick, welcome to my personal space where I share my coding projects and learnings. My passion for coding drives me to create innovative solutions and share knowledge.</p>
         <p>With a background in various programming languages and frameworks, I'm always eager to take on new challenges and expand my skill set.</p>
     </section>
 
@@ -343,7 +344,8 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 SPECTRÉ. All Rights Reserved.</p>
+        <p>&copy; 2024 Arya Mallick. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
+
